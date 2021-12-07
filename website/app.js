@@ -77,7 +77,6 @@ const postData = async (url, data) => {
 
     try {
         const data = await request.json();
-        console.log('from postData fun.', data);
         return data;
     } catch (err) {
         console.log('Error:', err);
@@ -93,7 +92,6 @@ const updateUI = async (url) => {
     try {
 
         const data = await response.json();
-        console.log('from updateUI', data);
         
         const html =
             `
