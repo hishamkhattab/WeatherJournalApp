@@ -24,3 +24,24 @@ const port = 3000;
 app.listen(port, () => console.log(`Server is running at port: ${port}.`));
 
 
+//get request route
+app.get('/getData', (req, res) => {
+    console.log('getting data');
+    res.send(projectData);
+});
+
+
+//post request route
+app.post('/addData', (req, res) => {
+    const { tempreture, date, userInput } = req.body;
+
+    //adding data to projectData endpoint
+    projectData = {
+        tempreture,
+        data,
+        userInput
+    };
+
+    console.log('ProjectData: ', projectData);
+    res.send(projectData);
+})
