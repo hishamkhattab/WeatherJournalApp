@@ -31,6 +31,10 @@ generateBtn.addEventListener('click', e => {
                 date,
                 userInput: feeling
             };
+            //removing error class 
+            if ((zipCode.classList.contains('error'))) {
+                zipCode.classList.remove('error');
+            };
             // post request to the server
             postData('/addData', myData)
                 .then(data => {
@@ -38,7 +42,10 @@ generateBtn.addEventListener('click', e => {
                     updateUI('/getData');
                 });
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            catchError();
+            console.log(err)
+        });
 });
 
 /** fetch data from OpenWeatherMap API*/
@@ -100,3 +107,12 @@ const updateUI = async (url) => {
         console.log('Error', err);
     };
 };
+
+const catchError = () => {
+    if (!(zipCode.classList.contains('error'))) {
+        zipCode.classList.add('error');
+    } else {
+        zipCode.classList.remove('error');
+    }
+};
+

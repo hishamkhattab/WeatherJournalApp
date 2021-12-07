@@ -1,111 +1,124 @@
-body{
-    background: #fffff8;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+/* Creating css variables*/
+:root {
+  /*colors*/
+  --main-clr: #f5f8fa;
+  --main-clr-200: #e1e8ed;
+  --main-clr-400: #aab8c2;
+  --main-clr-600: #657786;
+  --main-clr-800: #14171a;
+  --main-clr-blue: #1da1f2;
+  /*margin*/
+  --main-margin: 1em;
+  /*border-radius*/
+  --br-radius: 1em;
 }
 
-#app{
-    display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height:100vh;
-    background: #f23557;
-    color: #f0d43a;
-    justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+/* main style */
+
+* {
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.08em;
+  box-sizing: border-box;
 }
 
-.holder{
-
+body {
+  min-height: 100vh;
+  background: var(--main-clr-200);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
+/*******************************************************/
 
-.entry{
-    background: rgba(59, 74, 107, .4);
+#app {
+  margin: var(--main-margin);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-#entryHolder{
-
-}
-
-#date{
-
-}
-
-#temp{
-
-}
-
-#content{
-
-}
-
 .headline {
-
+  margin-bottom: var(--main-margin);
+  font-size: 2.5em;
+  font-weight: 600;
 }
-.title{
 
+.entry {
+  background: var(--main-clr-400);
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
-label{
-    display:block;
-    font-size: 27px;
+label {
+  display: block;
+  text-align: center;
+  margin-bottom: var(--main-margin);
 }
 
-input{
-    display:block;
-    height: 60px;
-    width: 320px;
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
+input {
+  display: block;
+  padding: 0.6em 1em;
+  margin-bottom: var(--main-margin);
+  width: 40ch;
+  background: var(--main-clr-400);
+  color: var(--main-clr-800);
+  border: 0;
+  border-radius: var(--br-radius);
 }
 
-button{
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
-    color: #f0d43a;
-    font-size: 26px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
-    box-shadow: 2px 4px 5px #444;
-}
-h1{
-    font-size: 36px;
+.feel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-gap: var(--main-margin);
 }
 
-textarea{
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+button {
+  padding: 0.6em 1em;
+  margin-block: var(--main-margin);
+  width: 35ch;
+  background: var(--main-clr-800);
+  color: var(--main-clr-400);
+  font-size: 1em;
+  font-weight: 600;
+  border: 0;
+  border-radius: var(--br-radius);
+  box-shadow: 2px 4px 5px #444;
 }
+
+h1 {
+  font-size: 36px;
+}
+
+textarea {
+  padding: 0.6em 1em;
+  background: var(--main-clr-400);
+  color: var(--main-clr-800);
+  border: 0;
+  border-radius: var(--br-radius);
+}
+
+.entry {
+  padding: 0.6em 1em;
+  margin-block: 2em;
+  width: 350px;
+  background: var(--main-clr);
+  color: var(--main-clr-800);
+  border-radius: var(--br-radius);
+}
+
+.entry .title {
+  margin-block: var(--main-margin);
+  text-align: center;
+  font-size: 2em;
+}
+
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: 2px solid var(--main-clr-blue);
 }
-/* Style for Placeholder Text*/
-::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
 
-} 
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
-} 
-  
-::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
-} 
+.error {
+  border: 2px solid #e33f33;
+}
