@@ -16,6 +16,30 @@ const content = document.getElementById('entryHolder');
 let newDate = new Date();
 let date = newDate.toLocaleString().split(',')[0];
 
+/** add event listener to the generate btn */
+generateBtn.addEventListener('click', e => {
+
+    //get the values from UI
+    const zip = zipCode.value;
+    const feeling = feelingText.value;
+
+    //calling getweather function
+    getWeather(baseUrl, zip, apiKey)
+        .then(tempreture => {
+            myData = {
+                tempreture,
+                date,
+                userInput: feeling
+            };
+            // post request to the server
+            postData('/addData', myData)
+                .then(data => {
+                    //calling updateUI function
+                    updateUI('/getData');
+                });
+        })
+        .catch(err => console.log(err));
+});
 
 /** fetch data from OpenWeatherMap API*/
 const getWeather = async (url, zip, key) => {
@@ -26,8 +50,53 @@ const getWeather = async (url, zip, key) => {
     const data = await response.json();
 
     //return the tempreture in celesuis
-    console.log(data);
     return data.main.temp;
 };
 
-getWeather(baseUrl,'14202', apiKey);
+
+
+/** post data to our server's endpoint */
+const postData = async (url, data) => {
+    
+    const request = await fetch(url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+
+    try {
+        const data = await request.json();
+        console.log('from postData fun.', data);
+        return data;
+    } catch (err) {
+        console.log('Error:', err);
+    };
+};
+
+
+/** retrieve data from our server's endpoint and update UI */
+const updateUI = async (url) => {
+    
+    const response = await fetch(url);
+
+    try {
+
+        const data = await response.json();
+        console.log('from updateUI', data);
+        
+        const html =
+            `
+            <div id = "date">Date: ${data.date}</div>
+            <div id = "temp">Temp: ${data.tempreture}&deg <span>C</span></div>
+            <div id = "content">Feeling: ${data.userInput}</div>
+            `;
+        //updating UI
+        content.innerHTML = html;
+    } catch (err) {
+        console.log('Error', err);
+    };
+};
