@@ -6,7 +6,7 @@ const apiKey = '524a9b4b2764750f03c78efa38d6d608';
 
 // UI element
 const zipCode = document.getElementById('zip');
-const feelingText = document.getElementById('feeling');
+const feelingText = document.getElementById('feelings');
 const generateBtn = document.getElementById('generate');
 
 // content to update

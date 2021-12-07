@@ -26,7 +26,6 @@ app.listen(port, () => console.log(`Server is running at port: ${port}.`));
 
 //get request route
 app.get('/getData', (req, res) => {
-    console.log('getting data');
     res.send(projectData);
 });
 
@@ -38,7 +37,7 @@ app.post('/addData', (req, res) => {
     //adding data to projectData endpoint
     projectData = {
         tempreture,
-        data,
+        date,
         userInput
     };
 
