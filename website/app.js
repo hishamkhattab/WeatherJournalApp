@@ -20,8 +20,8 @@ let date = newDate.toLocaleString().split(',')[0];
 generateBtn.addEventListener('click', e => {
 
     //get the values from UI
-    const zip = zipCode.value;
-    const feeling = feelingText.value;
+    const zip = zipCode.value.trim();
+    const feeling = feelingText.value.trim();
 
     //calling getweather function
     getWeather(baseUrl, zip, apiKey)
